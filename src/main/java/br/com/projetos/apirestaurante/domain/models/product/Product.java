@@ -20,7 +20,7 @@ public class Product {
     private String name;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ingredient> ingredient;
+    private List<Ingredient> ingredients;
 
     private BigDecimal value;
 

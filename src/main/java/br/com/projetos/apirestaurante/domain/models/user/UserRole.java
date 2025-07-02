@@ -11,23 +11,22 @@ import java.util.UUID;
 public class UserRole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "role_id")
-    private UUID Id;
+    private int Id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false, unique = true)
-    private Roles role;
+    @Column(name = "role_name", nullable = false, unique = true)
+    private Roles roleName;
 
     private boolean IsActive = true;
 
-    enum Roles {
-        Common,
-        Admin,
-        Manager,
-        Attendant,
-        Chef,
-        Waiter;
+    public enum Roles {
+        COMMON,
+        ADMIN,
+        MANAGER,
+        ATTENDANT,
+        CHEF,
+        WAITER;
 
         public String getAuthority() {
             return "ROLE_" + this.name();
