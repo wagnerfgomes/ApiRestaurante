@@ -33,5 +33,9 @@ public class Ingredient {
     @JoinColumn(name = "categoryItens_id")
     private CategoryItens categoryItens;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
 
 }
