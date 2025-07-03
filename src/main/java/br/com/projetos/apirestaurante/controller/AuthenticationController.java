@@ -1,6 +1,7 @@
 package br.com.projetos.apirestaurante.controller;
 
 import br.com.projetos.apirestaurante.DTOs.LoginDto;
+import br.com.projetos.apirestaurante.DTOs.TokenResponseDto;
 import br.com.projetos.apirestaurante.useCases.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,8 @@ public class AuthenticationController {
     private LoginUser loginUser;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto dto){
-        log.warn("controller acessado");
+    public ResponseEntity<TokenResponseDto> login(@RequestBody LoginDto dto){
         var token = loginUser.authenticate(dto);
-
         return ResponseEntity.ok().body(token);
     }
 

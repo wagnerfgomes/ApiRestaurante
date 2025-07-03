@@ -1,5 +1,6 @@
 package br.com.projetos.apirestaurante.service;
 
+import br.com.projetos.apirestaurante.DTOs.TokenResponseDto;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class JwtService {
     @Autowired
     private final JwtEncoder jwtEncoder;
 
-    public String generationToken(Authentication authentication){
+    public TokenResponseDto generationToken(Authentication authentication){
         Instant now = Instant.now();
         long expiry = 3600L;
 
@@ -36,8 +37,11 @@ public class JwtService {
                 .subject(authentication.getName())
                 .claim("scope", scopes)
                 .build();
+        var token = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
-        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+        var tokenResponse = new TokenResponseDto(token, "Bearer", now.plusSeconds(expiry));
+
+        return tokenResponse;
     }
 
 
