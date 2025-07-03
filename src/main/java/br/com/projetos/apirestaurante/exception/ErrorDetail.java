@@ -1,7 +1,7 @@
 package br.com.projetos.apirestaurante.exception;
 
 public enum ErrorDetail {
-    ;
+    USER_NOT_FOUND("User not found, please try other credentials", 404, "B001");
 
     private final String message;
     private final int statusCode;
