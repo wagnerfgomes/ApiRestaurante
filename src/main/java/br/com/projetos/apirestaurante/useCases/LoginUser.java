@@ -27,5 +27,4 @@ public class LoginUser {
 
         return jwtService.generationToken(authentication);
     }
-
 }
